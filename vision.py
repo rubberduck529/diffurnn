@@ -20,9 +20,6 @@ class PatchEmbed(nn.Module):
     """
     Splits the image into patches and embeds them.
     For CIFAR-10 (32×32 images) using patch_size=4 yields 64 tokens.
-    
-    This version computes sinusoidal positional embeddings on the fly,
-    so that it can work with an arbitrary number of patches.
     """
     def __init__(self, img_size=32, patch_size=4, in_chans=3, embed_dim=128):
         super().__init__()
@@ -122,7 +119,6 @@ class DiffuRNNLayer(nn.Module):
       - A token mixing update (1D convolution across tokens).
       - A simple linear attention update.
       - A feed‑forward block.
-    This design no longer fixes the sequence length.
     """
     def __init__(self, embed_dim):
         super().__init__()
